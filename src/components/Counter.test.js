@@ -1,14 +1,14 @@
 import Enzyme, { shallow } from 'enzyme';
 import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17';
-import App from './App';
+import Counter from './Counter';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
 
 /**
- * Creates a ShallowWrapper for the App component.
+ * Creates a ShallowWrapper for the Counter component.
  * @returns {ShallowWrapper}
  */
-const renderApp = () => shallow(<App />);
+const renderCounter = () => shallow(<Counter />);
 
 /**
  * Return ShallowWrapper containing node(s) with the given data-test value.
@@ -19,34 +19,34 @@ const renderApp = () => shallow(<App />);
 const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test="${val}"]`);
 
 test('renders without error', () => {
-  const wrapper = renderApp();
-  const appComponent = findByTestAttr(wrapper, 'component-app');
-  console.log(appComponent.length);
-  expect(appComponent.length).toBe(1);
+  const wrapper = renderCounter();
+  const counterComponent = findByTestAttr(wrapper, 'component-counter');
+  console.log(counterComponent.length);
+  expect(counterComponent.length).toBe(1);
 });
 
 test('renders counter display', () => {
-  const wrapper = renderApp();
+  const wrapper = renderCounter();
   const counterDisplay = findByTestAttr(wrapper, 'counter-display');
   expect(counterDisplay.length).toBe(1);
 });
 
 test('counter display starts at 0', () => {
-  const wrapper = renderApp();
+  const wrapper = renderCounter();
   const counterText = findByTestAttr(wrapper, 'count').text();
   expect(counterText).toBe('0');
 });
 
 describe('increment', () => {
   test('renders increment button', () => {
-    const wrapper = renderApp();
-    const button = findByTestAttr(wrapper, 'increment-button');
-    expect(button.length).toBe(1);
+    const wrapper = renderCounter();
+    const btn = findByTestAttr(wrapper, 'increment-button');
+    expect(btn.length).toBe(1);
   });
 
   test('clicking increment button increments counter display', () => {
     // find the button
-    const wrapper = renderApp();
+    const wrapper = renderCounter();
     const btn = findByTestAttr(wrapper, 'increment-button');
 
     // click the button
@@ -61,13 +61,13 @@ describe('increment', () => {
 
 describe('decrement', () => {
   test('renders decrement button', () => {
-    const wrapper = renderApp();
+    const wrapper = renderCounter();
     const button = findByTestAttr(wrapper, 'decrement-button');
     expect(button.length).toBe(1);
   });
 
   test('clicking decrement button decrements counter display when counter is greater than 0', () => {
-    const wrapper = shallow(<App />);
+    const wrapper = renderCounter();
 
     // click the increment button so that the counter is greater than 0
     const incBtn = findByTestAttr(wrapper, 'increment-button');
@@ -85,7 +85,7 @@ describe('decrement', () => {
 
 describe('error when counter goes below 0', () => {
   test('error does not show when not needed', () => {
-    const wrapper = renderApp();
+    const wrapper = renderCounter();
     const errorDiv = findByTestAttr(wrapper, 'error-message');
     expect(errorDiv.length).toBe(0);
   });
@@ -97,7 +97,7 @@ describe('error when counter goes below 0', () => {
     let wrapper;
     beforeEach(() => {
       // no need to set counter value here; default value of 0 is good
-      wrapper = renderApp();
+      wrapper = renderCounter();
 
       // find decrement button and click
       const decBtn = findByTestAttr(wrapper, 'decrement-button');

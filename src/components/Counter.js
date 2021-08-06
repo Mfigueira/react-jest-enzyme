@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import './App.css';
 
-function App() {
+const Counter = () => {
   const [counter, setCounter] = useState(0);
   const [error, setError] = useState(false);
 
@@ -19,7 +18,7 @@ function App() {
   };
 
   return (
-    <div data-test="component-app">
+    <div data-test="component-counter">
       <h1 data-test="counter-display">
         The counter is currently <span data-test="count">{counter}</span>
       </h1>
@@ -43,6 +42,6 @@ function App() {
       )}
     </div>
   );
-}
+};
 
-export default App;
+export default Counter;
