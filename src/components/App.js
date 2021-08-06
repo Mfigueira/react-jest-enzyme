@@ -1,3 +1,4 @@
+import Congrats from './Congrats';
 import Counter from './Counter';
 
 const App = () => {
@@ -6,6 +7,7 @@ const App = () => {
       <h1>App</h1>
 
       <Counter />
+      <Congrats />
     </div>
   );
 };

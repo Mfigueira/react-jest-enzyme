@@ -1,5 +1,6 @@
 import Enzyme, { shallow } from 'enzyme';
 import EnzymeAdapter from '@wojtekmaj/enzyme-adapter-react-17';
+import { findByTestAttr } from '../test/testUtils';
 import Counter from './Counter';
 
 Enzyme.configure({ adapter: new EnzymeAdapter() });
@@ -9,14 +10,6 @@ Enzyme.configure({ adapter: new EnzymeAdapter() });
  * @returns {ShallowWrapper}
  */
 const renderCounter = () => shallow(<Counter />);
-
-/**
- * Return ShallowWrapper containing node(s) with the given data-test value.
- * @param {ShallowWrapper} wrapper - Enzyme shallow wrapper to search within.
- * @param {string} val - Value of data-test attr!
- * @returns {ShallowWrapper}
- */
-const findByTestAttr = (wrapper, val) => wrapper.find(`[data-test="${val}"]`);
 
 test('renders without error', () => {
   const wrapper = renderCounter();
