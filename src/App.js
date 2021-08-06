@@ -1,20 +1,20 @@
-import { useState } from "react";
-import "./App.css";
+import { useState } from 'react';
+import './App.css';
 
 function App() {
   const [counter, setCounter] = useState(0);
   const [error, setError] = useState(false);
 
-  const handleIncrementClick = (error) => {
+  const handleIncrementClick = error => {
     if (error) setError(false);
-    setCounter((counter) => counter + 1);
+    setCounter(counter => counter + 1);
   };
 
-  const handleDecrementClick = (counter) => {
+  const handleDecrementClick = counter => {
     if (counter < 1) {
       setError(true);
     } else {
-      setCounter((counter) => counter - 1);
+      setCounter(counter => counter - 1);
     }
   };
 
