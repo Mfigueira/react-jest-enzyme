@@ -1,14 +1,23 @@
+// import Counter from './Counter';
+import { Container, Row, Col } from 'react-bootstrap';
 import Congrats from './Congrats';
-import Counter from './Counter';
+import GuessedWords from './GuessedWords';
 
 const App = () => {
   return (
-    <div data-test="component-app">
-      <h1>App</h1>
+    <Container data-test="component-app">
+      <Row>
+        <Col>
+          <h1>Jotto</h1>
 
-      <Counter />
-      <Congrats />
-    </div>
+          {/* <Counter /> */}
+          <Congrats success={true} />
+          <GuessedWords
+            guessedWords={[{ guessedWord: 'test', letterMatchCount: 4 }]}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

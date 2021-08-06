@@ -1,12 +1,14 @@
+import { Alert } from 'react-bootstrap';
+
 const Congrats = ({ success }) => {
   return (
-    <div data-test="component-congrats">
+    <Alert data-test="component-congrats" variant="success">
       {success && (
-        <p data-test="congrats-message">
+        <span data-test="congrats-message">
           Congratulations! You guessed the word!
-        </p>
+        </span>
       )}
-    </div>
+    </Alert>
   );
 };
 

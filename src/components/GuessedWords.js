@@ -1,17 +1,19 @@
+import { ListGroup } from 'react-bootstrap';
+
 const GuessedWords = ({ guessedWords }) => {
   const renderInstructions = (
     <p data-test="guess-instructions">Try guessing the secret word!</p>
   );
 
   const renderGuessedTable = (
-    <ul data-test="guessed-words">
+    <ListGroup as="ul" data-test="guessed-words">
       {guessedWords.map((gw, idx) => (
-        <li key={idx} data-test="guessed-word">
+        <ListGroup.Item as="li" key={idx} data-test="guessed-word">
           <strong>{gw.guessedWord}</strong> - Matched letters:{' '}
           {gw.letterMatchCount}
-        </li>
+        </ListGroup.Item>
       ))}
-    </ul>
+    </ListGroup>
   );
 
   return (
