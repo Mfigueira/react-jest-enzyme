@@ -1,9 +1,18 @@
 const GuessedWords = ({ guessedWords }) => {
   const renderInstructions = (
-    <p data-test="guess-instructions">Try guessing what the secret word is!</p>
+    <p data-test="guess-instructions">Try guessing the secret word!</p>
   );
 
-  const renderGuessedTable = null;
+  const renderGuessedTable = (
+    <ul data-test="guessed-words">
+      {guessedWords.map((gw, idx) => (
+        <li key={idx} data-test="guessed-word">
+          <strong>{gw.guessedWord}</strong> - Matched letters:{' '}
+          {gw.letterMatchCount}
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <div data-test="component-guessed-words">
