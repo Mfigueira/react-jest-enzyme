@@ -10,12 +10,32 @@ import Input from './Input';
 //   useState: state => [state, mockSetCurrentGuess],
 // }));
 
-const renderInput = () => shallow(<Input />);
+const renderInput = (props = {}) => shallow(<Input {...props} />);
 
-test('renders without error', () => {
-  const wrapper = renderInput();
-  const inputComponent = findByTestAttr(wrapper, 'component-input');
-  expect(inputComponent.length).toBe(1);
+describe('render', () => {
+  let wrapper;
+
+  describe('when success is true', () => {
+    beforeEach(() => {
+      wrapper = renderInput({ success: true });
+    });
+
+    test('input box does not render', () => {
+      const inputComponent = findByTestAttr(wrapper, 'component-input');
+      expect(inputComponent.length).toBe(0);
+    });
+  });
+
+  describe('when success is false', () => {
+    beforeEach(() => {
+      wrapper = renderInput({ success: false });
+    });
+
+    test('input box renders without error', () => {
+      const inputComponent = findByTestAttr(wrapper, 'component-input');
+      expect(inputComponent.length).toBe(1);
+    });
+  });
 });
 
 describe('state controlled input filed', () => {
