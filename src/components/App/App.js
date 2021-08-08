@@ -1,9 +1,16 @@
 // import Counter from './Counter';
+import { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import Congrats from './Congrats';
-import GuessedWords from './GuessedWords';
+import { getSecretWord } from '../../actions';
+import Congrats from '../Congrats';
+import GuessedWords from '../GuessedWords';
+import Input from '../Input';
 
 const App = () => {
+  useEffect(() => {
+    getSecretWord();
+  }, []);
+
   return (
     <Container data-test="component-app">
       <Row>
@@ -11,7 +18,8 @@ const App = () => {
           <h1>Jotto</h1>
 
           {/* <Counter /> */}
-          <Congrats success={true} />
+          <Congrats success={false} />
+          <Input success={false} secretWord="party" />
           <GuessedWords
             guessedWords={[{ guessedWord: 'test', letterMatchCount: 4 }]}
           />
