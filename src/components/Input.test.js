@@ -27,10 +27,7 @@ describe('render', () => {
     });
 
     test('input box does not render', () => {
-      const inputComponent = findByTestAttr(
-        wrapper,
-        'component-input'
-      ).hostNodes();
+      const inputComponent = findByTestAttr(wrapper, 'component-input');
       expect(inputComponent.length).toBe(0);
     });
   });

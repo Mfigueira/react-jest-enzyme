@@ -21,9 +21,7 @@ const App = () => {
       <Row>
         <Col>
           <h1>Jotto</h1>
-
-          <Congrats success={success} />
-          <Input />
+          {success ? <Congrats /> : <Input />}
           <GuessedWords guessedWords={guessedWords} />
         </Col>
       </Row>
