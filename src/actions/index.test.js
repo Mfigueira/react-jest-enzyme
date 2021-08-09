@@ -1,5 +1,5 @@
 import moxios from 'moxios';
-import { getSecretWord } from '.';
+import { getSecretWord, correctGuess, actionTypes } from '.';
 
 describe('getSecretWord', () => {
   beforeEach(() => {
@@ -21,5 +21,12 @@ describe('getSecretWord', () => {
 
     const secretWord = await getSecretWord();
     expect(secretWord).toBe('party');
+  });
+});
+
+describe('correctGuess', () => {
+  test(`returns an object with type ${actionTypes.CORRECT_GUESS}`, () => {
+    const action = correctGuess();
+    expect(action).toStrictEqual({ type: actionTypes.CORRECT_GUESS });
   });
 });
