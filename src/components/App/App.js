@@ -1,8 +1,8 @@
 // import Counter from './Counter';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
-import { getSecretWord } from '../../util/http';
+import { setSecretWord } from '../../actions';
 import Congrats from '../Congrats';
 import GuessedWords from '../GuessedWords';
 import Input from '../Input';
@@ -10,12 +10,11 @@ import Input from '../Input';
 const App = () => {
   const success = useSelector(state => state.success);
   const guessedWords = useSelector(state => state.guessedWords);
-
-  const secretWord = 'party';
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    getSecretWord();
-  }, []);
+    dispatch(setSecretWord());
+  }, [dispatch]);
 
   return (
     <Container data-test="component-app">

@@ -7,7 +7,7 @@ import { findByTestAttr, mockStore } from '../../test/testUtils';
 import App from './App';
 
 // activate global mock to make sure getSecretWord doesn't make network calls
-jest.mock('../../util/http');
+jest.mock('../../actions');
 
 const setupAppWrapper = (initialState = {}) => {
   const appWrapper = mount(

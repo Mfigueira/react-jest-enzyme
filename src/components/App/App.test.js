@@ -1,11 +1,11 @@
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { findByTestAttr, mockStore } from '../../test/testUtils';
-import { getSecretWord as mockGetSecretWord } from '../../util/http';
+import { setSecretWord as mockSetSecretWord } from '../../actions';
 import App from './App';
 
 // activate global mock to make sure getSecretWord doesn't make network calls
-jest.mock('../../util/http');
+jest.mock('../../actions');
 
 const renderApp = () =>
   mount(
@@ -22,21 +22,21 @@ test('renders without error', () => {
   expect(appComponent.length).toBe(1);
 });
 
-describe('get secret word', () => {
+describe('set secret word', () => {
   beforeEach(() => {
-    mockGetSecretWord.mockClear();
+    mockSetSecretWord.mockClear();
   });
 
-  test('get secret word on app mount', () => {
+  test('set secret word on app mount', () => {
     renderApp();
-    expect(mockGetSecretWord).toHaveBeenCalledTimes(1);
+    expect(mockSetSecretWord).toHaveBeenCalledTimes(1);
   });
 
-  test('get secret word does not run on app update', () => {
+  test('set secret word does not run on app update', () => {
     const wrapper = renderApp();
-    mockGetSecretWord.mockClear();
+    mockSetSecretWord.mockClear();
 
     wrapper.setProps();
-    expect(mockGetSecretWord).toHaveBeenCalledTimes(0);
+    expect(mockSetSecretWord).toHaveBeenCalledTimes(0);
   });
 });
