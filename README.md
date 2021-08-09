@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This is a React project with Unit and Integration testing made with Jest and Enzyme.
+This is a Jotto App Game made with React and Redux + Unit and Integration testing made with Jest and Enzyme.
 
 <!-- ## Can I see it?
 
