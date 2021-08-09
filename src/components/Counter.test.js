@@ -11,7 +11,7 @@ const renderCounter = () => shallow(<Counter />);
 test('renders without error', () => {
   const wrapper = renderCounter();
   const counterComponent = findByTestAttr(wrapper, 'component-counter');
-  console.log(counterComponent.length);
+  // console.log(counterComponent.length);
   expect(counterComponent.length).toBe(1);
 });
 
