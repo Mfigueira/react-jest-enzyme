@@ -1,5 +1,6 @@
-import { createStore } from 'redux';
+import { applyMiddleware, createStore } from 'redux';
 import reducer from '../reducers';
+import { middlewares } from '../store';
 
 /**
  * Return ShallowWrapper containing node(s) with the given data-test value.
@@ -10,4 +11,5 @@ import reducer from '../reducers';
 export const findByTestAttr = (wrapper, val) =>
   wrapper.find(`[data-test="${val}"]`);
 
-export const mockStore = state => createStore(reducer, state);
+export const mockStore = initialState =>
+  createStore(reducer, initialState, applyMiddleware(...middlewares));
