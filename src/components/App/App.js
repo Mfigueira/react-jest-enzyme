@@ -10,6 +10,7 @@ import Input from '../Input';
 const App = () => {
   const success = useSelector(state => state.success);
   const guessedWords = useSelector(state => state.guessedWords);
+  const secretWord = useSelector(state => state.secretWord);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,6 +22,7 @@ const App = () => {
       <Row>
         <Col>
           <h1>Jotto</h1>
+          <p>Secret word: {secretWord}</p>
           {success ? <Congrats /> : <Input />}
           <GuessedWords guessedWords={guessedWords} />
         </Col>
