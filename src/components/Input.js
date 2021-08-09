@@ -1,8 +1,10 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 
-const Input = ({ success, secretWord }) => {
+const Input = ({ secretWord }) => {
   const [currentGuess, setCurrentGuess] = React.useState('');
+  const success = useSelector(state => state.success);
 
   const handleInputChange = e => {
     setCurrentGuess(e.target.value);
@@ -13,7 +15,7 @@ const Input = ({ success, secretWord }) => {
     setCurrentGuess('');
   };
 
-  if (success) return;
+  if (success) return null;
 
   return (
     <div data-test="component-input">

@@ -1,3 +1,6 @@
+import { createStore } from 'redux';
+import reducer from '../reducers';
+
 /**
  * Return ShallowWrapper containing node(s) with the given data-test value.
  * @param {ShallowWrapper} wrapper - Enzyme shallow wrapper to search within.
@@ -6,3 +9,5 @@
  */
 export const findByTestAttr = (wrapper, val) =>
   wrapper.find(`[data-test="${val}"]`);
+
+export const mockStore = state => createStore(reducer, state);

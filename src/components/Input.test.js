@@ -1,6 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import { findByTestAttr } from '../test/testUtils';
+import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
+import { findByTestAttr, mockStore } from '../test/testUtils';
 import Input from './Input';
 
 // Option for mocking a hook that allows destructured imports on the component
@@ -10,29 +11,40 @@ import Input from './Input';
 //   useState: state => [state, mockSetCurrentGuess],
 // }));
 
-const renderInput = (props = {}) => shallow(<Input {...props} />);
+const setupInput = (initialState = {}, props = {}) =>
+  mount(
+    <Provider store={mockStore(initialState)}>
+      <Input {...props} />
+    </Provider>
+  );
 
 describe('render', () => {
   let wrapper;
 
   describe('when success is true', () => {
     beforeEach(() => {
-      wrapper = renderInput({ success: true });
+      wrapper = setupInput({ success: true });
     });
 
     test('input box does not render', () => {
-      const inputComponent = findByTestAttr(wrapper, 'component-input');
+      const inputComponent = findByTestAttr(
+        wrapper,
+        'component-input'
+      ).hostNodes();
       expect(inputComponent.length).toBe(0);
     });
   });
 
   describe('when success is false', () => {
     beforeEach(() => {
-      wrapper = renderInput({ success: false });
+      wrapper = setupInput({ success: false });
     });
 
     test('input box renders without error', () => {
-      const inputComponent = findByTestAttr(wrapper, 'component-input');
+      const inputComponent = findByTestAttr(
+        wrapper,
+        'component-input'
+      ).hostNodes();
       expect(inputComponent.length).toBe(1);
     });
   });
@@ -45,11 +57,11 @@ describe('state controlled input filed', () => {
     mockSetCurrentGuess = jest.fn();
     React.useState = jest.fn(() => ['', mockSetCurrentGuess]);
 
-    wrapper = renderInput();
+    wrapper = setupInput({ success: false });
   });
 
   test('state is updated with the correct value from input', () => {
-    const inputBox = findByTestAttr(wrapper, 'input-box');
+    const inputBox = findByTestAttr(wrapper, 'input-box').hostNodes();
 
     const mockEvent = { target: { value: 'train' } };
     inputBox.simulate('change', mockEvent);
@@ -58,7 +70,7 @@ describe('state controlled input filed', () => {
   });
 
   test('state is cleared on form submit', () => {
-    const guessForm = findByTestAttr(wrapper, 'guess-form');
+    const guessForm = findByTestAttr(wrapper, 'guess-form').hostNodes();
 
     guessForm.simulate('submit', { preventDefault() {} });
 

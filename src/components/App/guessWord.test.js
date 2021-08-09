@@ -3,11 +3,16 @@
 // (deep, with children rendered !== from 'shallow')
 import React from 'react';
 import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
+import { findByTestAttr, mockStore } from '../../test/testUtils';
 import App from './App';
-import { findByTestAttr } from '../../test/testUtils';
 
-const setupAppWrapper = (state = {}) => {
-  const appWrapper = mount(<App />);
+const setupAppWrapper = (initialState = {}) => {
+  const appWrapper = mount(
+    <Provider store={mockStore(initialState)}>
+      <App />
+    </Provider>
+  );
 
   const inputBox = findByTestAttr(appWrapper, 'input-box').hostNodes();
   inputBox.simulate('change', { target: { value: 'train' } });
