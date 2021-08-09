@@ -1,10 +1,12 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { guessWord } from '../actions';
 
-const Input = ({ secretWord }) => {
+const Input = () => {
   const [currentGuess, setCurrentGuess] = React.useState('');
   const success = useSelector(state => state.success);
+  const dispatch = useDispatch();
 
   const handleInputChange = e => {
     setCurrentGuess(e.target.value);
@@ -12,6 +14,7 @@ const Input = ({ secretWord }) => {
 
   const handleFormSubmit = e => {
     e.preventDefault();
+    dispatch(guessWord(currentGuess));
     setCurrentGuess('');
   };
 

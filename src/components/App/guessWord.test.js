@@ -1,11 +1,13 @@
 // functional test - testing behavior
-// this is an integration test, 'mounting' the entire App component
-// (deep, with children rendered !== from 'shallow')
+// 'mounting' the entire App component (deep, with children rendered !== from 'shallow')
 import React from 'react';
 import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import { findByTestAttr, mockStore } from '../../test/testUtils';
 import App from './App';
+
+// activate global mock to make sure getSecretWord doesn't make network calls
+jest.mock('../../util/http');
 
 const setupAppWrapper = (initialState = {}) => {
   const appWrapper = mount(
@@ -23,7 +25,7 @@ const setupAppWrapper = (initialState = {}) => {
   return appWrapper;
 };
 
-describe.only('no words has been guessed', () => {
+describe('no words has been guessed', () => {
   let appWrapper;
   beforeEach(() => {
     appWrapper = setupAppWrapper({
