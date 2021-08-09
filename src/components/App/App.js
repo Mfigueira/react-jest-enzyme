@@ -1,7 +1,7 @@
 // import Counter from './Counter';
 import { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import { getSecretWord } from '../../actions';
+import { getSecretWord } from '../../util/http';
 import Congrats from '../Congrats';
 import GuessedWords from '../GuessedWords';
 import Input from '../Input';
